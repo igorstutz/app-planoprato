@@ -448,6 +448,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 .vs { position: absolute; left: 0; top: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; border-radius: 50%; background: var(--text); color: #fff; display: grid; place-items: center; font-weight: 800; z-index: 2; box-shadow: 0 0 0 8px #fff; }
 .save-pill { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; background: var(--text); color: #fff; padding: 12px 20px; border-radius: 999px; font-weight: 600; }
 .save-pill b { color: var(--primary); font-size: 20px; }
+.save-pill b, .save-pill span { white-space: nowrap; }
 
 /* Bento de recursos */
 .bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: minmax(220px, auto); gap: 18px; }
@@ -544,6 +545,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   .steps2, .compare { grid-template-columns: 1fr; }
   .how-line { display: none; }
   .vs { left: 50%; top: 0; }
+  .cmp-after { padding-top: 56px; }
   .bento { grid-template-columns: 1fr; }
   .b-w4, .b-w3, .b-w2 { grid-column: auto; }
   .numbers2 { grid-template-columns: repeat(2, 1fr); padding: 44px 22px; }
@@ -554,6 +556,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   #shareCard { grid-template-columns: 1fr !important; }
 }
 @media (max-width: 560px) {
+  .save-pill { flex-wrap: wrap; justify-content: center; border-radius: 22px; font-size: 14px; padding: 12px 18px; }
   .appl { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .cmp-col { padding: 28px 20px; }
   .lo-day .pot { font-size: 32px; }
@@ -847,7 +850,7 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
         <div class="cmp-total"><span>Gasto estimado</span><strong data-money="201">R$ 0</strong></div>
       </div>
     </div>
-    <div class="center reveal" style="text-align:center"><div class="save-pill">💸 Até <b data-money="189">R$ 0</b> a mais no bolso por semana*</div>
+    <div class="center reveal" style="text-align:center"><div class="save-pill"><span>💸 Até <b data-money="189">R$ 0</b></span> <span>a mais no bolso por semana*</span></div>
     <p class="disclaimer">*Ilustração com 2 pessoas, 21 refeições, contando 3 deliveries de R$ 60 e 15% de desperdício.</p></div>
   </div>
 </section>
