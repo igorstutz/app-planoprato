@@ -373,10 +373,6 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   .mobile-cta.show { transform: none; }
   .mobile-cta .btn { width: 100%; }
 }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-  .reveal { opacity: 1; transform: none; }
-}
 </style>
 </head>
 <body>
@@ -717,7 +713,8 @@ const PLAY_STORE_URL = '';
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// animações sempre ativas, mesmo com "reduzir movimento" ligado no sistema
+const reduce = false;
 const brl = (v, cents = true) => 'R$ ' + (cents ? v.toFixed(2) : Math.round(v).toString()).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
 /* ───── Anéis de progresso ───── */
