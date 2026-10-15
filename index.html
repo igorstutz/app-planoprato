@@ -373,9 +373,196 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   .mobile-cta.show { transform: none; }
   .mobile-cta .btn { width: 100%; }
 }
+
+/* ═════════════ Upgrade visual das seções ═════════════ */
+.progress-top { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--primary), #A9D977); z-index: 70; transition: width .1s linear; }
+.blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; pointer-events: none; z-index: -1; animation: blob 18s ease-in-out infinite; }
+@keyframes blob { 33% { transform: translate(40px, -30px) scale(1.08); } 66% { transform: translate(-30px, 30px) scale(.95); } }
+.sec-chip { display: inline-flex; align-items: center; gap: 8px; background: var(--card); border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px; box-shadow: var(--shadow); margin-bottom: 14px; }
+.sec-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 0 rgba(108,192,74,.6); animation: ping 2s infinite; }
+@keyframes ping { 70% { box-shadow: 0 0 0 10px rgba(108,192,74,0); } 100% { box-shadow: 0 0 0 0 rgba(108,192,74,0); } }
+.grad-text { background: linear-gradient(90deg, var(--primary-dark), var(--primary), #8fd46c, var(--primary-dark)); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 6s linear infinite; }
+@keyframes shine { to { background-position: 300% 0; } }
+
+/* Marquee em duas faixas */
+.marquee2 { padding: 34px 0; background: var(--card); border-block: 1px solid var(--border); overflow: hidden; display: grid; gap: 14px; position: relative; }
+.marquee2::before, .marquee2::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
+.marquee2::before { left: 0; background: linear-gradient(90deg, var(--card), transparent); }
+.marquee2::after { right: 0; background: linear-gradient(-90deg, var(--card), transparent); }
+.mrow { display: flex; gap: 14px; width: max-content; animation: scroll 55s linear infinite; }
+.mrow.rev { animation-direction: reverse; animation-duration: 65s; }
+.marquee2:hover .mrow { animation-play-state: paused; }
+.mchip { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px 8px 8px; border-radius: 999px; background: var(--bg); border: 1px solid var(--border); font-weight: 500; font-size: 15px; white-space: nowrap; transition: transform .2s, border-color .2s; }
+.mchip:hover { transform: translateY(-2px) scale(1.03); border-color: var(--primary-border); }
+.mchip em { font-style: normal; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; }
+.mchip small { color: var(--primary-dark); font-weight: 600; font-size: 13px; }
+
+/* Como funciona: trilha e mini demos */
+.how { position: relative; }
+.how-line { position: absolute; left: 8%; right: 8%; top: 64px; height: 4px; z-index: 0; }
+.how-line svg { width: 100%; height: 12px; overflow: visible; }
+.how-line path { stroke: var(--primary-border); stroke-width: 3; stroke-dasharray: 8 10; fill: none; }
+.how-line .run { stroke: var(--primary); stroke-dasharray: 1200; stroke-dashoffset: 1200; transition: stroke-dashoffset 2s ease; }
+.how.in .how-line .run { stroke-dashoffset: 0; }
+.steps2 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; position: relative; z-index: 1; }
+.step2 { background: var(--card); border: 1px solid var(--border); border-radius: 28px; padding: 26px; box-shadow: var(--shadow); transition: transform .3s, box-shadow .3s; display: flex; flex-direction: column; }
+.step2:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.step2 .badge { width: 54px; height: 54px; border-radius: 50%; background: var(--primary); color: #fff; font-weight: 800; font-size: 22px; display: grid; place-items: center; box-shadow: 0 0 0 8px var(--bg), 0 10px 20px rgba(108,192,74,.35); margin-bottom: 20px; }
+.step2 h3 { font-size: 21px; margin-bottom: 8px; }
+.step2 p { color: var(--muted); margin-bottom: 20px; }
+.demo { margin-top: auto; background: var(--bg); border: 1px solid var(--border); border-radius: 20px; padding: 16px; min-height: 168px; position: relative; overflow: hidden; }
+.demo-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.demo-chips span { padding: 7px 12px; border-radius: 12px; border: 1.5px solid var(--border); background: #fff; font-size: 13px; font-weight: 500; transition: all .35s; }
+.demo-chips span.on { border-color: var(--primary); background: var(--primary-soft); color: var(--primary-deep); transform: scale(1.04); }
+.demo-chips span.no { border-color: var(--danger); background: var(--danger-soft); color: #a33a31; text-decoration: line-through; }
+.demo-budget .amt { font-size: 30px; font-weight: 800; text-align: center; transition: color .3s; }
+.demo-track { height: 8px; border-radius: 999px; background: var(--border); position: relative; margin: 16px 6px 14px; }
+.demo-track .fill { position: absolute; inset: 0 auto 0 0; border-radius: 999px; background: var(--primary); transition: width .9s cubic-bezier(.2,.8,.2,1), background .3s; }
+.demo-track .thumb { position: absolute; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: #fff; border: 4px solid var(--primary); box-shadow: 0 4px 10px rgba(0,0,0,.15); transition: left .9s cubic-bezier(.2,.8,.2,1), border-color .3s; }
+.demo-status { text-align: center; font-size: 13px; font-weight: 600; border-radius: 999px; padding: 6px 12px; width: max-content; margin: 0 auto; transition: background .3s, color .3s; }
+.demo-list .li { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: 14px; font-weight: 500; }
+.demo-list .li .box { width: 20px; height: 20px; }
+.demo-list .li.done .box { background: var(--primary); border-color: var(--primary); }
+.demo-list .li.done .box svg { opacity: 1; transform: none; }
+.demo-list .li.done span:last-child { color: var(--light); text-decoration: line-through; }
+.demo-list .li span:last-child { transition: color .3s; }
+
+/* Antes x depois */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 32px; overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--border); }
+.cmp-col { padding: 40px; position: relative; }
+.cmp-col h3 { font-size: 24px; margin-bottom: 6px; }
+.cmp-col .sub { color: var(--muted); margin-bottom: 24px; }
+.cmp-before { background: #fff7f5; }
+.cmp-after { background: linear-gradient(160deg, var(--primary-soft), #fff); }
+.cmp-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; border-radius: 18px; background: #fff; border: 1px solid var(--border); margin-bottom: 12px; transition: transform .3s; }
+.cmp-item:hover { transform: translateX(6px); }
+.cmp-item .ic { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-size: 20px; }
+.cmp-before .ic { background: var(--danger-soft); }
+.cmp-after .ic { background: var(--primary-soft); }
+.cmp-item b { display: block; font-size: 15px; }
+.cmp-item span { font-size: 14px; color: var(--muted); }
+.cmp-total { margin-top: 18px; display: flex; justify-content: space-between; align-items: baseline; padding-top: 16px; border-top: 1px dashed var(--border); font-weight: 600; }
+.cmp-total strong { font-size: 30px; font-weight: 800; }
+.cmp-before .cmp-total strong { color: var(--danger); }
+.cmp-after .cmp-total strong { color: var(--primary-dark); }
+.vs { position: absolute; left: 0; top: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; border-radius: 50%; background: var(--text); color: #fff; display: grid; place-items: center; font-weight: 800; z-index: 2; box-shadow: 0 0 0 8px #fff; }
+.save-pill { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; background: var(--text); color: #fff; padding: 12px 20px; border-radius: 999px; font-weight: 600; }
+.save-pill b { color: var(--primary); font-size: 20px; }
+
+/* Bento de recursos */
+.bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: minmax(220px, auto); gap: 18px; }
+.bcard { background: var(--card); border: 1px solid var(--border); border-radius: 28px; padding: 26px; position: relative; overflow: hidden; display: flex; flex-direction: column; transition: border-color .3s, box-shadow .3s, transform .3s; }
+.bcard:hover { border-color: var(--primary-border); box-shadow: var(--shadow-lg); }
+.bcard h3 { font-size: 19px; margin-bottom: 6px; }
+.bcard p { color: var(--muted); font-size: 14.5px; }
+.bcard .viz { margin-top: auto; padding-top: 18px; }
+.b-w4 { grid-column: span 4; } .b-w3 { grid-column: span 3; } .b-w2 { grid-column: span 2; }
+.b-green { background: linear-gradient(140deg, var(--primary-soft), #fff 70%); }
+.b-dark { background: var(--text); color: #fff; border-color: var(--text); }
+.b-dark p { color: rgba(255,255,255,.7); }
+
+.lo-flow { display: flex; align-items: center; gap: 14px; position: relative; }
+.lo-day { flex: 1; background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 14px; text-align: center; position: relative; }
+.lo-day .when { font-size: 12px; font-weight: 600; letter-spacing: .06em; color: var(--muted); text-transform: uppercase; }
+.lo-day .pot { font-size: 40px; display: block; margin: 6px 0; }
+.lo-day .cost { font-weight: 700; }
+.lo-day .ghost { opacity: .25; }
+.lo-mover { position: absolute; font-size: 40px; line-height: 1; left: 0; top: 0; animation: hop 3.2s ease-in-out infinite; z-index: 3; pointer-events: none; }
+@keyframes hop { 0%, 15% { transform: translate(0, 0); opacity: 0; } 25% { opacity: 1; } 50% { transform: translate(var(--hop), -30px); } 75%, 100% { transform: translate(var(--hop2), 0); opacity: 0; } }
+.lo-arrow { font-size: 26px; color: var(--primary-dark); animation: nudge 1.6s ease-in-out infinite; }
+
+.pantry-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.pantry-grid span { max-height: 64px; }
+.pantry-grid span { aspect-ratio: 1; border-radius: 14px; border: 1.5px solid var(--border); background: #fff; display: grid; place-items: center; font-size: 22px; position: relative; transition: all .3s; }
+.pantry-grid span.on { border-color: var(--primary); background: var(--primary-soft); }
+.pantry-grid span.on::after { content: '✓'; position: absolute; top: 3px; right: 5px; font-size: 10px; font-weight: 700; color: #fff; background: var(--primary); width: 15px; height: 15px; border-radius: 50%; display: grid; place-items: center; }
+
+.swap-card { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; overflow: hidden; }
+.swap-card .em { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; font-size: 24px; flex: none; transition: background .4s; }
+.swap-card .txt { flex: 1; min-width: 0; }
+.swap-card .nm { font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.swap-card .dl { font-size: 12px; font-weight: 600; }
+.swap-card .rot { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; flex: none; transition: transform .5s; }
+.swap-anim { animation: swapIn .5s cubic-bezier(.2,.8,.2,1); }
+@keyframes swapIn { from { transform: translateY(16px); opacity: 0; } }
+
+.cook-step { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 16px; }
+.cook-step .n { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 8px; }
+.cook-step .t { font-size: 17px; font-weight: 600; min-height: 52px; }
+.cook-bar { height: 6px; background: rgba(255,255,255,.15); border-radius: 999px; margin-top: 12px; overflow: hidden; }
+.cook-bar i { display: block; height: 100%; background: var(--primary); border-radius: 999px; transition: width .6s; }
+
+.allergy-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.allergy-chips span { padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--border); background: #fff; font-size: 13px; font-weight: 500; transition: all .3s; }
+.allergy-chips span.no { border-color: var(--danger); background: var(--danger-soft); color: #a33a31; text-decoration: line-through; }
+
+.appl { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 8px; }
+.appl span { aspect-ratio: 1; max-height: 70px; border-radius: 16px; background: #fff; border: 1.5px solid var(--border); display: grid; place-items: center; font-size: 24px; filter: grayscale(1); opacity: .45; transition: all .35s; }
+.appl span.on { filter: none; opacity: 1; border-color: var(--primary); background: var(--primary-soft); transform: translateY(-3px); }
+
+.macro-bars { display: grid; gap: 10px; }
+.mb { display: grid; grid-template-columns: 70px 1fr 44px; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; }
+.mb .t { height: 10px; background: var(--border); border-radius: 999px; overflow: hidden; }
+.mb .t i { display: block; height: 100%; width: 0; border-radius: 999px; transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
+.mb b { text-align: right; }
+
+.chat { background: #E7DED4; border-radius: 20px; padding: 14px; display: grid; gap: 8px; }
+.bubble-msg { background: #DCF8C6; border-radius: 14px 14px 4px 14px; padding: 10px 12px; font-size: 13px; justify-self: end; max-width: 92%; box-shadow: 0 1px 1px rgba(0,0,0,.08); white-space: pre-line; min-height: 40px; }
+.bubble-msg .cursor { display: inline-block; width: 2px; height: 14px; background: var(--text); vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.bubble-in { background: #fff; border-radius: 14px 14px 14px 4px; padding: 8px 12px; font-size: 13px; justify-self: start; opacity: 0; transform: translateY(8px); transition: .4s; }
+.bubble-in.show { opacity: 1; transform: none; }
+
+/* Números */
+.numbers2 { background: var(--text); color: #fff; border-radius: 36px; padding: 64px 50px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; position: relative; overflow: hidden; isolation: isolate; }
+.numbers2 .glow { position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(108,192,74,.5), transparent 65%); z-index: -1; animation: blob 14s ease-in-out infinite; }
+.numbers2 .num-ic { font-size: 30px; display: block; margin-bottom: 6px; animation: floaty 5s ease-in-out infinite; }
+.numbers2 strong { display: block; font-size: clamp(40px, 5vw, 58px); font-weight: 800; color: var(--primary); line-height: 1.1; }
+.numbers2 span.l { color: rgba(255,255,255,.75); }
+
+/* CTA */
+.cta2 { position: relative; overflow: hidden; border-radius: 40px; padding: 70px 56px; color: #fff; background: linear-gradient(120deg, var(--primary-deep), var(--primary-dark) 35%, var(--primary) 70%, #8fd46c); background-size: 200% 200%; animation: gradmove 12s ease infinite; display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px; align-items: center; isolation: isolate; }
+@keyframes gradmove { 50% { background-position: 100% 100%; } }
+.cta2 h2 { color: #fff; margin: 12px 0 14px; }
+.cta2 p { font-size: 18px; opacity: .92; max-width: 520px; }
+.cta2 .store { background: #fff; color: var(--text); animation: pulse 2.6s ease-in-out infinite; }
+.cta2 .store svg { fill: var(--text); }
+.cta2 .store + .store { animation-delay: 1.3s; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,.5); } 50% { box-shadow: 0 0 0 12px rgba(255,255,255,0); } }
+.cta-perks { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 26px; font-size: 14px; opacity: .95; }
+.cta-perks span::before { content: '✓'; display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: rgba(255,255,255,.25); margin-right: 8px; font-size: 11px; font-weight: 700; }
+.cta-phone { justify-self: center; width: 230px; height: 440px; border-radius: 38px; background: #111; padding: 9px; transform: rotate(8deg); box-shadow: 0 40px 70px rgba(0,0,0,.35); animation: floaty 6s ease-in-out infinite; }
+.cta-phone .scr { width: 100%; height: 100%; border-radius: 30px; background: var(--bg); padding: 40px 12px 12px; color: var(--text); overflow: hidden; position: relative; }
+.cta-phone .scr::before { content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 70px; height: 18px; border-radius: 10px; background: #111; }
+.cta-phone .t1 { font-weight: 700; font-size: 15px; }
+.cta-phone .t2 { font-size: 10px; color: var(--muted); margin-bottom: 10px; }
+.cta-phone .mini { display: flex; gap: 8px; align-items: center; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 7px; margin-bottom: 7px; font-size: 10px; font-weight: 600; }
+.cta-phone .mini i { font-style: normal; width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center; font-size: 15px; flex: none; }
+.cta2 .bubble { position: absolute; font-size: 40px; z-index: -1; opacity: .85; animation: floaty 7s ease-in-out infinite; }
+
+@media (max-width: 960px) {
+  .steps2, .compare { grid-template-columns: 1fr; }
+  .how-line { display: none; }
+  .vs { left: 50%; top: 0; }
+  .bento { grid-template-columns: 1fr; }
+  .b-w4, .b-w3, .b-w2 { grid-column: auto; }
+  .numbers2 { grid-template-columns: repeat(2, 1fr); padding: 44px 22px; }
+  .cta2 { grid-template-columns: 1fr; text-align: center; padding: 56px 22px; }
+  .cta2 p { margin: 0 auto; }
+  .cta2 .stores, .cta-perks { justify-content: center; }
+  .cta-phone { display: none; }
+  #shareCard { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 560px) {
+  .appl { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .cmp-col { padding: 28px 20px; }
+  .lo-day .pot { font-size: 32px; }
+  .mchip { font-size: 14px; }
+}
 </style>
 </head>
 <body>
+<div class="progress-top" id="progressTop"></div>
 
 <header class="nav" id="nav">
   <div class="wrap">
@@ -509,39 +696,59 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marquee"></div>
+<div class="marquee2" aria-hidden="true">
+  <div class="mrow" id="mrow1"></div>
+  <div class="mrow rev" id="mrow2"></div>
 </div>
 
 <!-- ═════════ COMO FUNCIONA ═════════ -->
-<section class="section" id="como">
+<section class="section" id="como" style="overflow:hidden">
+  <div class="blob" style="width:420px;height:420px;background:#E9D9B2;left:-140px;top:60px"></div>
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="label">Como funciona</div>
-      <h2>Do “o que eu faço hoje?” ao carrinho cheio em 3 passos</h2>
+      <div class="sec-chip"><span class="dot"></span><span class="label">Como funciona</span></div>
+      <h2>Do “o que eu faço hoje?” ao <span class="grad-text">carrinho cheio</span> em 3 passos</h2>
       <p>Você conta como come e quanto quer gastar. O PratoPlan faz as contas e monta tudo.</p>
     </div>
-    <div class="steps">
-      <div class="step-card reveal">
-        <div class="num">1</div>
-        <div class="ic" style="background:var(--breakfast)">📝</div>
-        <h3>Conte como você come</h3>
-        <p>Refeições, dias, equipamentos da cozinha, dieta, alergias e o que você não gosta.</p>
-        <div class="mini-chips"><span>🍳 Café</span><span>🌱 Vegano</span><span>🍟 Air fryer</span><span>🥜 Sem amendoim</span></div>
-      </div>
-      <div class="step-card reveal d1">
-        <div class="num">2</div>
-        <div class="ic" style="background:var(--lunch)">💰</div>
-        <h3>Defina o orçamento</h3>
-        <p>Arraste o valor da semana. A gente avisa se está folgado, apertado ou abaixo do mínimo.</p>
-        <div class="mini-chips"><span>✅ Dentro do orçamento</span><span>⚠️ Semana enxuta</span></div>
-      </div>
-      <div class="step-card reveal d2">
-        <div class="num">3</div>
-        <div class="ic" style="background:var(--dinner)">🛒</div>
-        <h3>Cozinhe e compre</h3>
-        <p>Cardápio dia a dia, modo passo a passo na cozinha e lista de compras sem o que você já tem.</p>
-        <div class="mini-chips"><span>▶️ Passo a passo</span><span>📤 Compartilhar lista</span></div>
+    <div class="how reveal" id="how">
+      <div class="how-line"><svg viewBox="0 0 1000 12" preserveAspectRatio="none"><path d="M0 6 H1000" /><path class="run" d="M0 6 H1000" /></svg></div>
+      <div class="steps2">
+        <div class="step2">
+          <div class="badge">1</div>
+          <h3>Conte como você come</h3>
+          <p>Refeições, dias, cozinha, dieta, alergias e o que você não gosta.</p>
+          <div class="demo">
+            <div class="label" style="margin-bottom:10px">Suas preferências</div>
+            <div class="demo-chips" id="demoChips">
+              <span data-k="on">🍳 Café</span><span data-k="on">🍛 Almoço</span><span data-k="on">🍽️ Jantar</span>
+              <span data-k="on">🍟 Air fryer</span><span data-k="on">⚡ Rápido</span><span data-k="no">🥜 Amendoim</span>
+              <span data-k="no">🫑 Pimentão</span><span data-k="on">🌱 Vegano</span>
+            </div>
+          </div>
+        </div>
+        <div class="step2">
+          <div class="badge">2</div>
+          <h3>Defina o orçamento</h3>
+          <p>A gente avisa se está folgado, apertado ou abaixo do mínimo.</p>
+          <div class="demo demo-budget">
+            <div class="label" style="text-align:center">Por semana</div>
+            <div class="amt" id="dbAmt">R$ 200</div>
+            <div class="demo-track"><div class="fill" id="dbFill"></div><div class="thumb" id="dbThumb"></div></div>
+            <div class="demo-status" id="dbStatus">✅ Dentro do orçamento</div>
+          </div>
+        </div>
+        <div class="step2">
+          <div class="badge">3</div>
+          <h3>Cozinhe e compre</h3>
+          <p>Cardápio dia a dia e lista de compras sem o que você já tem.</p>
+          <div class="demo demo-list" id="demoList">
+            <div class="label" style="margin-bottom:6px">🛒 Lista de compras</div>
+            <div class="li"><div class="box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div><span>🍅 Tomate · 1 kg</span></div>
+            <div class="li"><div class="box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div><span>🥚 Ovos · 1 dúzia</span></div>
+            <div class="li"><div class="box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div><span>🫘 Feijão · 1 pacote</span></div>
+            <div class="li"><div class="box"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div><span>🥬 Couve · 1 maço</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -611,33 +818,103 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
   </div>
 </section>
 
+<!-- ═════════ ANTES x DEPOIS ═════════ -->
+<section class="section" style="padding-bottom:60px">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="sec-chip"><span class="dot"></span><span class="label">Antes e depois</span></div>
+      <h2>A mesma semana, <span class="grad-text">bem menos estresse</span></h2>
+      <p>Uma semana típica de um casal, com e sem planejamento.</p>
+    </div>
+    <div class="compare reveal">
+      <div class="cmp-col cmp-before">
+        <h3>😵 Sem plano</h3>
+        <div class="sub">Decidindo tudo na hora</div>
+        <div class="cmp-item"><div class="ic">🤷</div><div><b>“O que tem pra jantar?”</b><span>Toda noite a mesma dúvida</span></div></div>
+        <div class="cmp-item"><div class="ic">🛵</div><div><b>Delivery 3x na semana</b><span>Quando bate o cansaço</span></div></div>
+        <div class="cmp-item"><div class="ic">🥬</div><div><b>Verdura estragando</b><span>Comprada sem saber pra quê</span></div></div>
+        <div class="cmp-item"><div class="ic">🛒</div><div><b>Mercado no improviso</b><span>Várias idas, itens repetidos</span></div></div>
+        <div class="cmp-total"><span>Gasto estimado</span><strong data-money="390">R$ 0</strong></div>
+      </div>
+      <div class="cmp-col cmp-after">
+        <div class="vs">VS</div>
+        <h3>🥗 Com PratoPlan</h3>
+        <div class="sub">A semana decidida em 30 segundos</div>
+        <div class="cmp-item"><div class="ic">📅</div><div><b>Cardápio pronto</b><span>Café, almoço e jantar de cada dia</span></div></div>
+        <div class="cmp-item"><div class="ic">🔁</div><div><b>Sobras viram almoço</b><span>Cozinha uma vez, come duas</span></div></div>
+        <div class="cmp-item"><div class="ic">🏠</div><div><b>Usa o que já tem</b><span>Nada esquecido no fundo da geladeira</span></div></div>
+        <div class="cmp-item"><div class="ic">✅</div><div><b>Uma ida ao mercado</b><span>Lista por setor, na quantidade certa</span></div></div>
+        <div class="cmp-total"><span>Gasto estimado</span><strong data-money="201">R$ 0</strong></div>
+      </div>
+    </div>
+    <div class="center reveal" style="text-align:center"><div class="save-pill">💸 Até <b data-money="189">R$ 0</b> a mais no bolso por semana*</div>
+    <p class="disclaimer">*Ilustração com 2 pessoas, 21 refeições, contando 3 deliveries de R$ 60 e 15% de desperdício.</p></div>
+  </div>
+</section>
+
 <!-- ═════════ RECURSOS ═════════ -->
-<section class="section">
+<section class="section" style="overflow:hidden">
+  <div class="blob" style="width:480px;height:480px;background:#BFE3A3;right:-180px;top:120px"></div>
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="label">Tudo que vem junto</div>
-      <h2>Pensado para a rotina, não só para a receita</h2>
+      <div class="sec-chip"><span class="dot"></span><span class="label">Tudo que vem junto</span></div>
+      <h2>Pensado para a rotina, <span class="grad-text">não só para a receita</span></h2>
     </div>
-    <div class="features">
-      <div class="feature wide reveal tilt">
-        <div>
-          <div class="ic">🔁</div>
-          <h3>Sobras que viram almoço</h3>
-          <p>Gosta de cozinhar em lote? O jantar é feito em dobro e vira o almoço do dia seguinte, sem custo extra na lista.</p>
-        </div>
-        <div class="leftover">
-          <div>🌙 Jantar de terça<b>🍲</b>4 porções</div>
-          <span class="arrow">➜</span>
-          <div>☀️ Almoço de quarta<b>🍲</b>R$ 0,00</div>
+    <div class="bento">
+      <div class="bcard b-w4 b-green reveal">
+        <h3>🔁 Sobras que viram almoço</h3>
+        <p>Gosta de cozinhar em lote? O jantar é feito em dobro e vira o almoço do dia seguinte, sem custo extra na lista.</p>
+        <div class="viz">
+          <div class="lo-flow" id="loFlow">
+            <div class="lo-day"><div class="when">🌙 Jantar · terça</div><span class="pot">🍲</span><div class="cost">4 porções</div></div>
+            <span class="lo-arrow">➜</span>
+            <div class="lo-day"><div class="when">☀️ Almoço · quarta</div><span class="pot ghost">🍲</span><div class="cost" style="color:var(--primary-dark)">R$ 0,00</div></div>
+            <span class="lo-mover" id="loMover">🍲</span>
+          </div>
         </div>
       </div>
-      <div class="feature reveal d1 tilt"><div class="ic">🏠</div><h3>Usa o que você já tem</h3><p>Marque o que tem na despensa. Sai da lista e as receitas que usam esses itens ganham prioridade.</p></div>
-      <div class="feature reveal tilt"><div class="ic">🔄</div><h3>Troque com um toque</h3><p>Não curtiu uma refeição? Veja alternativas e quanto cada troca economiza ou acrescenta.</p></div>
-      <div class="feature reveal d1 tilt"><div class="ic">▶️</div><h3>Modo passo a passo</h3><p>Instruções grandes, uma de cada vez, para seguir com a mão na massa.</p></div>
-      <div class="feature reveal d2 tilt"><div class="ic">🛡️</div><h3>Alergias levadas a sério</h3><p>Amendoim, glúten, lactose, frutos do mar e mais. Nenhuma receita com o que você exclui.</p></div>
-      <div class="feature reveal tilt"><div class="ic">🍟</div><h3>Do jeito da sua cozinha</h3><p>Só fogão? Tem air fryer? Só aparecem receitas que dá para fazer com o que você tem.</p></div>
-      <div class="feature reveal d1 tilt"><div class="ic">📊</div><h3>Macros em cada prato</h3><p>Calorias, proteína, carboidrato e gordura por porção, e o total do dia por pessoa.</p></div>
-      <div class="feature reveal d2 tilt"><div class="ic">📤</div><h3>Lista para compartilhar</h3><p>Mande a lista no WhatsApp para quem vai ao mercado, já organizada por setor.</p></div>
+      <div class="bcard b-w2 reveal d1">
+        <h3>🏠 Usa o que você já tem</h3>
+        <p>Sai da lista e ganha prioridade.</p>
+        <div class="viz"><div class="pantry-grid" id="pantryGrid"></div></div>
+      </div>
+      <div class="bcard b-w2 reveal">
+        <h3>🔄 Troque com um toque</h3>
+        <p>E veja quanto cada troca economiza.</p>
+        <div class="viz"><div class="swap-card"><div class="em" id="swEm">🍛</div><div class="txt"><div class="nm" id="swNm">Strogonoff de frango</div><div class="dl" id="swDl">R$ 8,77 por porção</div></div><div class="rot" id="swRot">⇄</div></div></div>
+      </div>
+      <div class="bcard b-w2 b-dark reveal d1">
+        <h3>▶️ Modo passo a passo</h3>
+        <p>Letras grandes, um passo por vez.</p>
+        <div class="viz"><div class="cook-step"><div class="n"><span>🌮 Tacos de carne moída</span><span id="ckN">1/4</span></div><div class="t" id="ckT">Refogue a cebola no azeite.</div><div class="cook-bar"><i id="ckBar" style="width:25%"></i></div></div></div>
+      </div>
+      <div class="bcard b-w2 reveal d2">
+        <h3>🛡️ Alergias levadas a sério</h3>
+        <p>Nenhuma receita com o que você exclui.</p>
+        <div class="viz"><div class="allergy-chips" id="allergyChips"></div></div>
+      </div>
+      <div class="bcard b-w3 reveal">
+        <h3>🍟 Do jeito da sua cozinha</h3>
+        <p>Só fogão? Tem air fryer? Só aparecem receitas que dá para fazer.</p>
+        <div class="viz"><div class="appl" id="appl"></div></div>
+      </div>
+      <div class="bcard b-w3 reveal d1">
+        <h3>📊 Macros em cada prato</h3>
+        <p>Calorias, proteína, carboidrato e gordura por porção.</p>
+        <div class="viz macro-bars" id="macroBars">
+          <div class="mb"><span>Proteína</span><div class="t"><i style="background:var(--danger)" data-w="68"></i></div><b>34g</b></div>
+          <div class="mb"><span>Carbo</span><div class="t"><i style="background:var(--warning)" data-w="80"></i></div><b>40g</b></div>
+          <div class="mb"><span>Gordura</span><div class="t"><i style="background:var(--primary)" data-w="48"></i></div><b>24g</b></div>
+          <div class="mb"><span>Calorias</span><div class="t"><i style="background:var(--text)" data-w="62"></i></div><b>520</b></div>
+        </div>
+      </div>
+      <div class="bcard b-w6 reveal" style="grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center" id="shareCard">
+        <div>
+          <h3 style="font-size:24px">📤 Lista no WhatsApp de quem vai ao mercado</h3>
+          <p style="font-size:16px;margin-top:6px">Um toque e a lista sai organizada por setor, com a quantidade e a embalagem certa de cada item.</p>
+        </div>
+        <div class="chat"><div class="bubble-msg" id="chatMsg"></div><div class="bubble-in" id="chatIn">Perfeito, já tô no mercado! 🛒</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -645,11 +922,13 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 <!-- ═════════ NÚMEROS ═════════ -->
 <section class="section" style="padding-top:20px">
   <div class="wrap">
-    <div class="numbers reveal">
-      <div><strong data-count="79">0</strong><span>receitas brasileiras</span></div>
-      <div><strong data-count="207">0</strong><span>ingredientes com preço médio</span></div>
-      <div><strong data-count="9">0</strong><span>estilos de dieta</span></div>
-      <div><strong data-count="8">0</strong><span>equipamentos de cozinha</span></div>
+    <div class="numbers2 reveal">
+      <div class="glow" style="right:-100px;top:-160px"></div>
+      <div class="glow" style="left:-140px;bottom:-200px;animation-delay:-7s"></div>
+      <div><span class="num-ic">🍲</span><strong data-count="79">0</strong><span class="l">receitas brasileiras</span></div>
+      <div><span class="num-ic" style="animation-delay:-1s">🥕</span><strong data-count="207">0</strong><span class="l">ingredientes com preço médio</span></div>
+      <div><span class="num-ic" style="animation-delay:-2s">🥗</span><strong data-count="9">0</strong><span class="l">estilos de dieta</span></div>
+      <div><span class="num-ic" style="animation-delay:-3s">🍳</span><strong data-count="8">0</strong><span class="l">equipamentos de cozinha</span></div>
     </div>
   </div>
 </section>
@@ -668,25 +947,41 @@ footer .wrap { display: flex; justify-content: space-between; align-items: cente
 <!-- ═════════ CTA ═════════ -->
 <section class="section" id="baixar" style="padding-top:20px">
   <div class="wrap">
-    <div class="cta reveal" id="cta">
-      <span class="bubble" style="left:6%;top:18%">🥑</span>
-      <span class="bubble" style="right:8%;top:14%;animation-delay:-2s">🍅</span>
-      <span class="bubble" style="left:12%;bottom:14%;animation-delay:-4s">🥕</span>
-      <span class="bubble" style="right:12%;bottom:18%;animation-delay:-1s">🌽</span>
-      <div class="label" style="color:#fff;opacity:.85">Grátis para iPhone e Android</div>
-      <h2 style="margin-top:12px">Monte sua primeira semana hoje</h2>
-      <p>Menos tempo pensando no que cozinhar, menos desperdício e mais dinheiro sobrando no fim da semana.</p>
-      <div class="stores">
-        <a class="store" href="#baixar" data-store="ios">
-          <svg viewBox="0 0 24 24"><path d="M16.37 12.63c-.02-2.26 1.85-3.35 1.93-3.4-1.05-1.54-2.69-1.75-3.27-1.77-1.39-.14-2.72.82-3.42.82-.71 0-1.8-.8-2.96-.78-1.52.02-2.92.89-3.7 2.25-1.58 2.74-.4 6.79 1.13 9.01.75 1.09 1.64 2.31 2.81 2.26 1.13-.05 1.56-.73 2.92-.73 1.36 0 1.75.73 2.94.71 1.22-.02 1.99-1.1 2.73-2.2.86-1.26 1.21-2.49 1.23-2.55-.03-.01-2.36-.9-2.38-3.62zM14.12 6c.62-.76 1.04-1.8.93-2.85-.9.04-1.99.6-2.63 1.35-.58.66-1.08 1.73-.95 2.75 1 .08 2.03-.51 2.65-1.25z"/></svg>
-          <div><small>Baixe na</small><strong>App Store</strong></div>
-          <em class="soon" hidden>Em breve</em>
-        </a>
-        <a class="store" href="#baixar" data-store="android">
-          <svg viewBox="0 0 24 24"><path d="M3.6 2.3c-.2.2-.3.6-.3 1v17.4c0 .4.1.8.3 1l9.7-9.7L3.6 2.3zm10.8 10.8l2.8 2.8-11.4 6.5 8.6-9.3zm0-2.2L5.8 1.6l11.4 6.5-2.8 2.8zm6.1 2.8l-2.6 1.5-3-3 3-3 2.6 1.5c.8.4.8 1.6 0 3z"/></svg>
-          <div><small>Disponível no</small><strong>Google Play</strong></div>
-          <em class="soon" hidden>Em breve</em>
-        </a>
+    <div class="cta2 reveal" id="cta">
+      <span class="bubble" style="left:44%;top:8%">🥑</span>
+      <span class="bubble" style="right:4%;top:6%;animation-delay:-2s">🍅</span>
+      <span class="bubble" style="left:3%;bottom:4%;animation-delay:-4s">🥕</span>
+      <span class="bubble" style="left:50%;bottom:8%;animation-delay:-1s">🌽</span>
+      <div>
+        <div class="label" style="color:#fff;opacity:.85">Grátis para iPhone e Android</div>
+        <h2>Monte sua primeira semana hoje</h2>
+        <p>Menos tempo pensando no que cozinhar, menos desperdício e mais dinheiro sobrando no fim da semana.</p>
+        <div class="stores">
+          <a class="store" href="#baixar" data-store="ios">
+            <svg viewBox="0 0 24 24"><path d="M16.37 12.63c-.02-2.26 1.85-3.35 1.93-3.4-1.05-1.54-2.69-1.75-3.27-1.77-1.39-.14-2.72.82-3.42.82-.71 0-1.8-.8-2.96-.78-1.52.02-2.92.89-3.7 2.25-1.58 2.74-.4 6.79 1.13 9.01.75 1.09 1.64 2.31 2.81 2.26 1.13-.05 1.56-.73 2.92-.73 1.36 0 1.75.73 2.94.71 1.22-.02 1.99-1.1 2.73-2.2.86-1.26 1.21-2.49 1.23-2.55-.03-.01-2.36-.9-2.38-3.62zM14.12 6c.62-.76 1.04-1.8.93-2.85-.9.04-1.99.6-2.63 1.35-.58.66-1.08 1.73-.95 2.75 1 .08 2.03-.51 2.65-1.25z"/></svg>
+            <div><small>Baixe na</small><strong>App Store</strong></div>
+            <em class="soon" hidden>Em breve</em>
+          </a>
+          <a class="store" href="#baixar" data-store="android">
+            <svg viewBox="0 0 24 24"><path d="M3.6 2.3c-.2.2-.3.6-.3 1v17.4c0 .4.1.8.3 1l9.7-9.7L3.6 2.3zm10.8 10.8l2.8 2.8-11.4 6.5 8.6-9.3zm0-2.2L5.8 1.6l11.4 6.5-2.8 2.8zm6.1 2.8l-2.6 1.5-3-3 3-3 2.6 1.5c.8.4.8 1.6 0 3z"/></svg>
+            <div><small>Disponível no</small><strong>Google Play</strong></div>
+            <em class="soon" hidden>Em breve</em>
+          </a>
+        </div>
+        <div class="cta-perks"><span>Sem cadastro</span><span>Sem anúncios</span><span>Receitas brasileiras</span></div>
+      </div>
+      <div class="cta-phone" aria-hidden="true">
+        <div class="scr">
+          <div class="t1">Sua semana está pronta! 🎉</div>
+          <div class="t2">21 refeições · R$ 201,28</div>
+          <div class="mini"><i style="background:var(--breakfast)">🫓</i>Tapioca de queijo</div>
+          <div class="mini"><i style="background:var(--lunch)">🍗</i>Frango grelhado</div>
+          <div class="mini"><i style="background:var(--dinner)">🍛</i>Strogonoff de frango</div>
+          <div class="mini"><i style="background:var(--breakfast)">🥣</i>Aveia de geladeira</div>
+          <div class="mini"><i style="background:var(--lunch)">🫘</i>Lentilha com legumes</div>
+          <div class="mini"><i style="background:var(--dinner)">🌮</i>Tacos de carne moída</div>
+          <div class="mini"><i style="background:var(--snack)">🍿</i>Pipoca na panela</div>
+        </div>
       </div>
     </div>
   </div>
@@ -833,7 +1128,11 @@ gItems.forEach((it) => it.addEventListener('click', () => {
 
 /* ───── Marquee ───── */
 const marqueeItems = [['🍲', 'Feijoada simples'], ['🍛', 'Strogonoff de frango'], ['🌮', 'Tacos de carne moída'], ['🥧', 'Escondidinho de mandioca'], ['🍤', 'Moqueca de tilápia'], ['🫓', 'Tapioca de queijo'], ['🍝', 'Macarrão à bolonhesa'], ['🥘', 'Arroz carreteiro'], ['🍆', 'Berinjela à parmegiana'], ['🎃', 'Creme de abóbora'], ['🥡', 'Frango xadrez'], ['🌽', 'Cuscuz com ovo']];
-$('#marquee').innerHTML = [...marqueeItems, ...marqueeItems].map(([e, n]) => `<span><em>${e}</em>${n}</span>`).join('');
+const mq1 = [['🍲', 'Feijoada simples', 'R$ 6,40', 'var(--lunch)'], ['🍛', 'Strogonoff de frango', 'R$ 8,77', 'var(--dinner)'], ['🌮', 'Tacos de carne moída', 'R$ 6,10', 'var(--dinner)'], ['🥧', 'Escondidinho de mandioca', 'R$ 6,90', 'var(--dinner)'], ['🍤', 'Moqueca de tilápia', 'R$ 11,20', 'var(--lunch)'], ['🫓', 'Tapioca de queijo', 'R$ 3,21', 'var(--breakfast)'], ['🍝', 'Macarrão à bolonhesa', 'R$ 7,90', 'var(--lunch)']];
+const mq2 = [['🥘', 'Arroz carreteiro', 'R$ 9,67', 'var(--lunch)'], ['🍆', 'Berinjela à parmegiana', 'R$ 8,40', 'var(--dinner)'], ['🎃', 'Creme de abóbora', 'R$ 3,58', 'var(--dinner)'], ['🥡', 'Frango xadrez', 'R$ 8,13', 'var(--dinner)'], ['🌽', 'Cuscuz com ovo', 'R$ 2,14', 'var(--breakfast)'], ['🥗', 'Salada Caesar de frango', 'R$ 8,55', 'var(--lunch)'], ['🍿', 'Pipoca na panela', 'R$ 0,40', 'var(--snack)']];
+const chip = ([e, n, p, c]) => `<span class="mchip"><em style="background:${c}">${e}</em>${n}<small>${p}</small></span>`;
+$('#mrow1').innerHTML = [...mq1, ...mq1].map(chip).join('');
+$('#mrow2').innerHTML = [...mq2, ...mq2].map(chip).join('');
 
 /* ───── Simulador ───── */
 const sim = { people: 2, meals: 3, days: 7, budget: 200 };
@@ -852,7 +1151,7 @@ function animateNumber(el, from, to, fmt) {
   if (reduce) { el.textContent = fmt(to); return to; }
   const t0 = performance.now();
   const step = (t) => {
-    const p = Math.min(1, (t - t0) / 450), v = from + (to - from) * (1 - Math.pow(1 - p, 3));
+    const p = Math.max(0, Math.min(1, (t - t0) / 450)), v = from + (to - from) * (1 - Math.pow(1 - p, 3));
     el.textContent = fmt(v);
     if (p < 1) requestAnimationFrame(step);
   };
@@ -974,7 +1273,7 @@ function countUp(el) {
   if (reduce) { el.textContent = to; return; }
   const t0 = performance.now();
   const step = (t) => {
-    const p = Math.min(1, (t - t0) / 1400);
+    const p = Math.max(0, Math.min(1, (t - t0) / 1400));
     el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
     if (p < 1) requestAnimationFrame(step);
   };
@@ -991,6 +1290,166 @@ const io = new IntersectionObserver((entries) => {
 $$('.reveal').forEach((el) => io.observe(el));
 
 $('#year').textContent = new Date().getFullYear();
+
+/* ═════════════ Mini demos das seções ═════════════ */
+const every = (ms, fn) => { fn(); return setInterval(fn, ms); };
+
+// Barra de progresso de leitura
+const progressTop = $('#progressTop');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - innerHeight;
+  progressTop.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + '%';
+}, { passive: true });
+
+// Passo 1: preferências sendo marcadas
+const dChips = $$('#demoChips span');
+let dcI = 0;
+every(650, () => {
+  if (dcI >= dChips.length + 4) { dChips.forEach((c) => c.classList.remove('on', 'no')); dcI = 0; return; }
+  const c = dChips[dcI];
+  if (c) c.classList.add(c.dataset.k);
+  dcI++;
+});
+
+// Passo 2: orçamento mudando
+const dbSteps = [
+  { v: 260, p: .78, t: '✅ Dentro do orçamento', bg: 'var(--primary-soft)', fg: 'var(--primary-deep)', c: 'var(--primary)' },
+  { v: 170, p: .45, t: '⚠️ Apertado: semana enxuta', bg: 'var(--warning-soft)', fg: '#9a6413', c: 'var(--warning)' },
+  { v: 110, p: .2, t: '⛔ Abaixo do mínimo', bg: 'var(--danger-soft)', fg: '#a33a31', c: 'var(--danger)' },
+  { v: 210, p: .6, t: '✅ Dentro do orçamento', bg: 'var(--primary-soft)', fg: 'var(--primary-deep)', c: 'var(--primary)' },
+];
+let dbI = 0, dbShown = 200;
+every(2200, () => {
+  const st = dbSteps[dbI++ % dbSteps.length];
+  dbShown = animateNumber($('#dbAmt'), dbShown, st.v, (v) => brl(v, false));
+  $('#dbFill').style.width = st.p * 100 + '%';
+  $('#dbFill').style.background = st.c;
+  $('#dbThumb').style.left = st.p * 100 + '%';
+  $('#dbThumb').style.borderColor = st.c;
+  $('#dbAmt').style.color = st.c;
+  const ds = $('#dbStatus');
+  ds.textContent = st.t; ds.style.background = st.bg; ds.style.color = st.fg;
+});
+
+// Passo 3: lista sendo marcada
+const dItems = $$('#demoList .li');
+let dlI = 0;
+every(900, () => {
+  if (dlI >= dItems.length + 2) { dItems.forEach((x) => x.classList.remove('done')); dlI = 0; return; }
+  if (dItems[dlI]) dItems[dlI].classList.add('done');
+  dlI++;
+});
+
+// Antes x depois: valores contam ao aparecer
+const moneyIO = new IntersectionObserver((entries) => entries.forEach((en) => {
+  if (!en.isIntersecting) return;
+  animateNumber(en.target, 0, +en.target.dataset.money, (v) => brl(v, false));
+  moneyIO.unobserve(en.target);
+}), { threshold: .5 });
+$$('[data-money]').forEach((el) => moneyIO.observe(el));
+
+// Sobras: panela pulando do jantar para o almoço
+function placeMover() {
+  const flow = $('#loFlow'), days = $$('.lo-day', flow), m = $('#loMover');
+  const fr = flow.getBoundingClientRect(), a = days[0].getBoundingClientRect(), b = days[1].getBoundingClientRect();
+  const pot = $('.pot', days[0]).getBoundingClientRect();
+  const start = a.left - fr.left + a.width / 2 - 20, end = b.left - fr.left + b.width / 2 - 20;
+  m.style.left = start + 'px';
+  m.style.top = (pot.top - fr.top) + 'px';
+  m.style.setProperty('--hop', (end - start) / 2 + 'px');
+  m.style.setProperty('--hop2', end - start + 'px');
+}
+placeMover(); window.addEventListener('resize', placeMover); window.addEventListener('load', placeMover);
+$('#loMover').addEventListener('animationiteration', placeMover);
+
+// Despensa
+const pantryFoods = ['🥚', '🍚', '🫘', '🧅', '🧄', '🥛', '🍝', '🧈'];
+$('#pantryGrid').innerHTML = pantryFoods.map((f) => `<span>${f}</span>`).join('');
+const pTiles = $$('#pantryGrid span');
+every(700, () => { const t = pTiles[Math.floor(Math.random() * pTiles.length)]; t.classList.toggle('on'); });
+
+// Troca de receita
+const swaps = [
+  ['🍛', 'Strogonoff de frango', 8.77, 'var(--dinner)'],
+  ['🫘', 'Lentilha com legumes', 3.39, 'var(--lunch)'],
+  ['🌮', 'Tacos de carne moída', 6.10, 'var(--dinner)'],
+  ['🍳', 'Fritada de legumes', 4.20, 'var(--lunch)'],
+];
+let swI = 0;
+setInterval(() => {
+  const prev = swaps[swI % swaps.length], cur = swaps[++swI % swaps.length];
+  const d = cur[2] - prev[2];
+  $('#swRot').style.transform = `rotate(${swI * 180}deg)`;
+  ['#swEm', '#swNm', '#swDl'].forEach((id) => { const el = $(id); el.classList.remove('swap-anim'); void el.offsetWidth; el.classList.add('swap-anim'); });
+  $('#swEm').textContent = cur[0]; $('#swEm').style.background = cur[3];
+  $('#swNm').textContent = cur[1];
+  const dl = $('#swDl');
+  dl.textContent = d <= 0 ? `economiza ${brl(-d)} por porção` : `+${brl(d)} por porção`;
+  dl.style.color = d <= 0 ? 'var(--primary-dark)' : 'var(--danger)';
+}, 2400);
+
+// Passo a passo
+const ckSteps = ['Refogue a cebola no azeite.', 'Junte a carne e frite até dourar.', 'Tempere com cominho e páprica.', 'Monte os tacos e sirva. 🎉'];
+let ckI = 0;
+setInterval(() => {
+  ckI = (ckI + 1) % ckSteps.length;
+  const t = $('#ckT');
+  t.classList.remove('swap-anim'); void t.offsetWidth; t.classList.add('swap-anim');
+  t.textContent = ckSteps[ckI];
+  $('#ckN').textContent = `${ckI + 1}/${ckSteps.length}`;
+  $('#ckBar').style.width = ((ckI + 1) / ckSteps.length) * 100 + '%';
+}, 2000);
+
+// Alergias
+const allergies = ['🥜 Amendoim', '🌰 Castanhas', '🥛 Lactose', '🥚 Ovos', '🌾 Glúten', '🫘 Soja', '🦐 Frutos do mar', '🐟 Peixe'];
+$('#allergyChips').innerHTML = allergies.map((a) => `<span>${a}</span>`).join('');
+const aChips = $$('#allergyChips span');
+every(800, () => { aChips[Math.floor(Math.random() * aChips.length)].classList.toggle('no'); });
+
+// Equipamentos
+const appliances = ['🔥', '♨️', '📻', '🍟', '🥤', '🍲', '🥪', '🎂'];
+$('#appl').innerHTML = appliances.map((a) => `<span>${a}</span>`).join('');
+const apTiles = $$('#appl span');
+const kitchens = [[0], [0, 3], [0, 1, 3, 4], [0, 2, 5], [0, 1, 2, 3, 4, 5, 6, 7]];
+let kI = 0;
+every(1600, () => { const k = kitchens[kI++ % kitchens.length]; apTiles.forEach((t, i) => t.classList.toggle('on', k.includes(i))); });
+
+// Macros: barras crescem ao aparecer e se renovam
+const macroIO = new IntersectionObserver((entries) => entries.forEach((en) => {
+  if (!en.isIntersecting) return;
+  const bars = $$('i', en.target);
+  const grow = () => bars.forEach((b) => (b.style.width = b.dataset.w + '%'));
+  setTimeout(grow, 200);
+  setInterval(() => { bars.forEach((b) => (b.style.width = '8%')); setTimeout(grow, 700); }, 5000);
+  macroIO.unobserve(en.target);
+}), { threshold: .4 });
+macroIO.observe($('#macroBars'));
+
+// WhatsApp: lista sendo digitada
+const chatText = '🛒 Lista da semana\n🥬 Tomate · 1 kg\n🥚 Ovos · 1 dúzia\n🫘 Feijão · 1 pacote\n🧀 Queijo minas · 500 g';
+function typeChat() {
+  const el = $('#chatMsg'), reply = $('#chatIn');
+  reply.classList.remove('show');
+  let i = 0;
+  const tick = () => {
+    el.innerHTML = chatText.slice(0, i).replace(/</g, '&lt;') + '<span class="cursor"></span>';
+    if (i++ < chatText.length) setTimeout(tick, 32);
+    else { el.innerHTML = chatText; setTimeout(() => reply.classList.add('show'), 500); setTimeout(typeChat, 5000); }
+  };
+  tick();
+}
+const chatIO = new IntersectionObserver((entries) => entries.forEach((en) => {
+  if (en.isIntersecting) { typeChat(); chatIO.disconnect(); }
+}), { threshold: .4 });
+chatIO.observe($('#shareCard'));
+
+// Como funciona: linha desenha ao aparecer
+const howIO = new IntersectionObserver((entries) => entries.forEach((en) => en.isIntersecting && en.target.classList.add('in')), { threshold: .3 });
+howIO.observe($('#how'));
+
+// Inclinação nos cartões do bento
+if (window.matchMedia('(pointer: fine)').matches) $$('.bcard, .step2').forEach(tilt);
+
 </script>
 </body>
 </html>
